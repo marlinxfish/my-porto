@@ -62,21 +62,24 @@
   // Night (Dark) = 75 (Midpoint)
   
   if (anim) {
-    // Initial State immediately
-    if (currentTheme === 'dark') {
-      anim.goToAndStop(150, true); // Go to Night state
-    } else {
-      anim.goToAndStop(75, true); // Go to Day state
-    }
-
-    // Ensure it renders even if DOMLoaded fired early
-    anim.addEventListener('DOMLoaded', () => {
+    const setInitialState = () => {
+      // 0 = Night (Moon)
+      // 75 = Day (Sun)
       if (currentTheme === 'dark') {
-        anim.goToAndStop(150, true); 
+        anim.goToAndStop(0, true); // Go to Night state (Frame 0 is safe)
       } else {
-        anim.goToAndStop(75, true); 
+        anim.goToAndStop(75, true); // Go to Day state
       }
-    });
+    };
+
+    // Set immediately if possible
+    setInitialState();
+
+    // Ensure it renders when data is ready (fixes initial invisibility)
+    anim.addEventListener('data_ready', setInitialState);
+    
+    // Backup for DOM readiness
+    anim.addEventListener('DOMLoaded', setInitialState);
   }
 
   const handleToggleClick = () => {
