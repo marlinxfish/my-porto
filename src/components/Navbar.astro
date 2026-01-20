@@ -62,11 +62,19 @@
   // Night (Dark) = 75 (Midpoint)
   
   if (anim) {
+    // Initial State immediately
+    if (currentTheme === 'dark') {
+      anim.goToAndStop(150, true); // Go to Night state
+    } else {
+      anim.goToAndStop(75, true); // Go to Day state
+    }
+
+    // Ensure it renders even if DOMLoaded fired early
     anim.addEventListener('DOMLoaded', () => {
       if (currentTheme === 'dark') {
-        anim.goToAndStop(150, true); // Go to Night state
+        anim.goToAndStop(150, true); 
       } else {
-        anim.goToAndStop(75, true); // Go to Day state
+        anim.goToAndStop(75, true); 
       }
     });
   }
