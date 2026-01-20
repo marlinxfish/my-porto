@@ -1,0 +1,359 @@
+---
+---
+<nav class="navbar">
+  <div class="container">
+    <a href="#home" class="logo">Ryan Mahardika</a>
+    
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#home" class="nav-link active" data-i18n="nav.home">Home</a></li>
+      <li><a href="#about" class="nav-link" data-i18n="nav.about">About Me</a></li>
+      <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Skill and Tools</a></li>
+      <!-- <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li> -->
+      <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+      <li class="lang-separator">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="id">ID</button>
+          <span class="divider">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </li>
+      <li>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode"></button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  import lottie from 'lottie-web';
+  import animationData from '../assets/Day and Night Toggle.json';
+
+  // Theme Toggle Logic
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  
+  // Initialize Lottie
+  let anim: any = null;
+  if (themeToggleBtn) {
+    anim = lottie.loadAnimation({
+      container: themeToggleBtn,
+      renderer: 'svg',
+      loop: false,
+      autoplay: false,
+      animationData: animationData
+    });
+  }
+
+  // Handle Initial State
+  const element = document.documentElement;
+  const currentTheme = localStorage.getItem("theme") || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  
+  // Assuming 150 frames total. 
+  // 0-75: Day -> Night
+  // 75-150: Night -> Day
+  // Or linear: 0 = Day, 150 = Night.
+  // Let's assume standard toggle behavior: 0->50% is ON, 50%->100% is OFF.
+  // Day (Light) = 0 (or end of loop)
+  // Night (Dark) = 75 (Midpoint)
+  
+  if (anim) {
+    anim.addEventListener('DOMLoaded', () => {
+      if (currentTheme === 'dark') {
+        anim.goToAndStop(150, true); // Go to Night state
+      } else {
+        anim.goToAndStop(75, true); // Go to Day state
+      }
+    });
+  }
+
+  const handleToggleClick = () => {
+    element.classList.toggle("dark");
+    const isDark = element.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+
+    if (anim) {
+      if (isDark) {
+        // Play Light -> Night (75 to 150)
+        anim.playSegments([75, 150], true);
+      } else {
+        // Play Night -> Light (0 to 75)
+        anim.playSegments([0, 75], true);
+      }
+    }
+  }
+
+  themeToggleBtn?.addEventListener("click", handleToggleClick);
+
+  // Language Toggle Logic
+  const langBtns = document.querySelectorAll('.lang-btn');
+  
+  // Initialize active state based on stored preference
+  const currentLang = localStorage.getItem('language') || 'en';
+  langBtns.forEach(btn => {
+    if (btn.getAttribute('data-lang') === currentLang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      if (!lang) return;
+
+      // Update UI
+      langBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Save and Dispatch
+      localStorage.setItem('language', lang);
+      window.dispatchEvent(new CustomEvent('language-changed', { detail: lang }));
+    });
+  });
+
+  // Mobile Menu Logic
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (mobileMenu && navLinks) {
+    mobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.toggle('is-active');
+      navLinks.classList.toggle('active');
+    });
+  }
+
+  // Active link highlighting
+  const sections = document.querySelectorAll('section');
+  const navLi = document.querySelectorAll('.nav-links li a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= sectionTop - sectionHeight / 3) {
+        const id = section.getAttribute('id');
+        if (id) current = id;
+      }
+    });
+
+    navLi.forEach((li) => {
+      li.classList.remove('active');
+      const href = li.getAttribute('href');
+      if (href && href.includes(current)) {
+        li.classList.add('active');
+      }
+    });
+  });
+</script>
+
+<style>
+  .navbar {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.8rem 0;
+    position: fixed; /* Fixed position agar selalu floating di atas viewport */
+    top: 1rem; /* Jarak dari atas untuk efek floating */
+    left: 50%; /* Center secara horizontal */
+    transform: translateX(-50%); /* Koreksi posisi center */
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    
+    /* Rounded & Floating Style */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0; /* Margin dihandle oleh positioning */
+    border-radius: 50px; /* Lebih rounded seperti kapsul */
+  }
+
+  /* Language Switcher */
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-right: 0.5rem;
+  }
+
+  .lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 0;
+    transition: color 0.3s ease;
+  }
+
+  .lang-btn:hover,
+  .lang-btn.active {
+    color: var(--text-color);
+    font-weight: 700;
+  }
+
+  .divider {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    opacity: 0.5;
+  }
+
+  /* Dark mode specific styles */
+  :global(.dark) .navbar {
+    background: rgba(9, 0, 64, 0.8); /* Dark background with opacity */
+    border: 1px solid rgba(177, 59, 255, 0.2); /* Subtle accent border */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+    background: linear-gradient(45deg, var(--text-gradient-start), var(--text-gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  .nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--text-accent);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--text-accent);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  .nav-link.active {
+    color: var(--text-accent);
+  }
+
+  /* Theme Toggle Button */
+  .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 50px; /* Adjust based on Lottie size */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--text-color); /* Ensure fallback color matches text */
+  }
+
+  .theme-toggle:hover {
+    color: var(--text-accent);
+  }
+
+  /* Mobile Menu Toggle */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .bar {
+    height: 3px;
+    width: 25px;
+    background-color: var(--text-color);
+    margin: 3px 0;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 2rem 0;
+      gap: 1.5rem;
+      transform: translateY(-150%);
+      transition: transform 0.4s ease-in-out;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      z-index: -1;
+    }
+
+    :global(.dark) .nav-links {
+      background: rgba(9, 0, 64, 0.95);
+    }
+
+    .nav-links.active {
+      transform: translateY(0);
+    }
+
+
+    /* Hamburger Animation */
+    .menu-toggle.is-active .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.is-active .bar:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .menu-toggle.is-active .bar:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+  }
+</style>
