@@ -353,23 +353,24 @@ import { Image } from 'astro:assets';
 		background: var(--bg-main);
 		padding: 1.25rem;
 		border-radius: 16px;
-		border: 1px solid rgba(0,0,0,0.05);
+		border: 1px solid rgba(59, 130, 246, 0.15);
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 	
 	:global(.dark) .timeline-content {
 		background: rgba(255,255,255,0.03);
-		border: 1px solid rgba(255,255,255,0.05);
+		border: 1px solid rgba(177, 59, 255, 0.2);
 	}
 
 	.timeline-content:hover {
 		transform: translateX(8px);
-		box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+		box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
 		border-color: var(--accent-primary);
 	}
 
 	:global(.dark) .timeline-content:hover {
-		box-shadow: 0 8px 30px rgba(177, 59, 255, 0.15);
+		box-shadow: 0 8px 30px rgba(177, 59, 255, 0.2);
+		border-color: var(--accent-primary);
 	}
 
 	.timeline-header {
@@ -557,6 +558,7 @@ import { Image } from 'astro:assets';
 		margin-bottom: 1rem;
 		letter-spacing: 4px;
 		text-transform: uppercase;
+		text-align: center;
 	}
 
 	.name {
@@ -565,6 +567,7 @@ import { Image } from 'astro:assets';
 		line-height: 1.1;
 		font-weight: 800;
 		letter-spacing: -2px;
+		text-align: center;
 		background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 50%, #06b6d4 100%);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
@@ -587,14 +590,15 @@ import { Image } from 'astro:assets';
 	}
 
 	.role {
-		font-size: 1.25rem;
+		font-size: 1.1rem;
 		color: var(--text-muted);
 		margin-top: 1.5rem;
 		margin-bottom: 3rem;
 		line-height: 1.6;
-		max-width: 650px;
-		margin-left: auto;
-		margin-right: auto;
+		max-width: 100%;
+		text-align: center;
+		white-space: nowrap;
+		overflow: visible;
 	}
 
 	.cta-buttons {
@@ -762,10 +766,11 @@ import { Image } from 'astro:assets';
 		}
 
 		.role {
-			font-size: 1rem;
+			font-size: 0.95rem;
 			margin-top: 1rem;
 			margin-bottom: 2rem;
-			padding: 0 0.5rem;
+			white-space: normal;
+			text-align: center;
 		}
 
 		.btn {
