@@ -25,90 +25,115 @@ import { Image } from 'astro:assets';
 		</section>
 
 		<section id="about">
-			<div class="section-container">
-				<h2 data-i18n="section.about.title">About Me</h2>
-				<p class="bio-text" data-i18n="section.about.bio">Hello! I am an IT Support & Network Administrator currently in my final year of Information Systems studies...</p>
+			<div class="about-wrapper">
+				<div class="section-header">
+					<span class="section-label" data-i18n="section.about.label">Get to Know Me</span>
+					<h2 data-i18n="section.about.title">About Me</h2>
+					<p class="bio-text" data-i18n="section.about.bio">Hello! I am an IT Support & Network Administrator currently in my final year of Information Systems studies...</p>
+				</div>
 				
 				<div class="resume-grid">
-					<!-- Experience Column -->
 					<div class="resume-column">
-						<h3 class="column-title">
-							<span class="icon">💼</span> 
-							<span data-i18n="section.about.exp.title">Work Experience</span>
-						</h3>
+						<div class="column-header">
+							<div class="column-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+							</div>
+							<h3 data-i18n="section.about.exp.title">Work Experience</h3>
+						</div>
 						<div class="timeline">
-							<!-- Item 3 (Latest) -->
 							<div class="timeline-item">
 								<div class="timeline-dot"></div>
 								<div class="timeline-content">
-									<span class="date" data-i18n="exp.3.date">August 2024 - September 2025</span>
+									<div class="timeline-header">
+										<span class="date" data-i18n="exp.3.date">August 2024 - Present</span>
+										<span class="type" data-i18n="exp.3.type">Freelance</span>
+									</div>
 									<h4 data-i18n="exp.3.role">Freelance IT Support</h4>
-									<span class="type" data-i18n="exp.3.type">Internship</span>
 									<p class="company">
 										<span data-i18n="exp.3.comp">PT. Tigapilar Kapital Utama</span>
-										<span class="location">📍 <span data-i18n="exp.3.loc">South Jakarta</span></span>
+										<span class="location">
+											<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+											<span data-i18n="exp.3.loc">South Jakarta</span>
+										</span>
 									</p>
 								</div>
 							</div>
-							<!-- Item 2 -->
 							<div class="timeline-item">
 								<div class="timeline-dot"></div>
 								<div class="timeline-content">
-									<span class="date" data-i18n="exp.2.date">January 2020 - January 2021</span>
+									<div class="timeline-header">
+										<span class="date" data-i18n="exp.2.date">January 2020 - January 2021</span>
+										<span class="type" data-i18n="exp.2.type">Internship</span>
+									</div>
 									<h4 data-i18n="exp.2.role">IT Support Team Member</h4>
-									<span class="type" data-i18n="exp.2.type">Internship</span>
 									<p class="company">
 										<span data-i18n="exp.2.comp">SMK Citra Negara</span>
-										<span class="location">📍 <span data-i18n="exp.2.loc">Depok</span></span>
+										<span class="location">
+											<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+											<span data-i18n="exp.2.loc">Depok</span>
+										</span>
 									</p>
 								</div>
 							</div>
-							<!-- Item 1 -->
 							<div class="timeline-item">
 								<div class="timeline-dot"></div>
 								<div class="timeline-content">
-									<span class="date" data-i18n="exp.1.date">August 2019 - November 2019</span>
+									<div class="timeline-header">
+										<span class="date" data-i18n="exp.1.date">August 2019 - November 2019</span>
+										<span class="type" data-i18n="exp.1.type">Internship</span>
+									</div>
 									<h4 data-i18n="exp.1.role">Network Technician</h4>
-									<span class="type" data-i18n="exp.1.type">Internship</span>
 									<p class="company">
 										<span data-i18n="exp.1.comp">Powertel</span>
-										<span class="location">📍 <span data-i18n="exp.1.loc">Depok</span></span>
+										<span class="location">
+											<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+											<span data-i18n="exp.1.loc">Depok</span>
+										</span>
 									</p>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<!-- Education Column -->
 					<div class="resume-column">
-						<h3 class="column-title">
-							<span class="icon">🎓</span>
-							<span data-i18n="section.about.edu.title">Education</span>
-						</h3>
+						<div class="column-header">
+							<div class="column-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+							</div>
+							<h3 data-i18n="section.about.edu.title">Education</h3>
+						</div>
 						<div class="timeline">
-							<!-- Edu 2 (Latest) -->
 							<div class="timeline-item">
 								<div class="timeline-dot"></div>
 								<div class="timeline-content">
-									<span class="date" data-i18n="edu.2.date">2022 - Present</span>
+									<div class="timeline-header">
+										<span class="date" data-i18n="edu.2.date">2022 - Present</span>
+										<span class="type" data-i18n="edu.2.type">Bachelor</span>
+									</div>
 									<h4 data-i18n="edu.2.school">Universitas Pamulang</h4>
-									<span class="type" data-i18n="edu.2.type">Full Time</span>
 									<p class="major">
 										<span data-i18n="edu.2.major">Informatics Engineering</span>
-										<span class="location">📍 <span data-i18n="edu.2.loc">South Tangerang</span></span>
+										<span class="location">
+											<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+											<span data-i18n="edu.2.loc">South Tangerang</span>
+										</span>
 									</p>
 								</div>
 							</div>
-							<!-- Edu 1 -->
 							<div class="timeline-item">
 								<div class="timeline-dot"></div>
 								<div class="timeline-content">
-									<span class="date" data-i18n="edu.1.date">2021</span>
+									<div class="timeline-header">
+										<span class="date" data-i18n="edu.1.date">2021</span>
+										<span class="type" data-i18n="edu.1.type">Vocational</span>
+									</div>
 									<h4 data-i18n="edu.1.school">SMK Citra Negara</h4>
-									<span class="type" data-i18n="edu.1.type">Full Time</span>
 									<p class="major">
 										<span data-i18n="edu.1.major">Computer and Network Engineering</span>
-										<span class="location">📍 <span data-i18n="edu.1.loc">Depok</span></span>
+										<span class="location">
+											<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+											<span data-i18n="edu.1.loc">Depok</span>
+										</span>
 									</p>
 								</div>
 							</div>
@@ -186,62 +211,117 @@ import { Image } from 'astro:assets';
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		border-bottom: 1px solid rgba(0,0,0,0.05);
-	}
-	
-	:global(.dark) section {
-		border-bottom: 1px solid rgba(255,255,255,0.05);
-	}
-
-	section:nth-child(odd) {
 		background-color: var(--bg-main);
 	}
 
-	section:nth-child(even) {
-		background-color: var(--bg-secondary);
-	}
-
 	.section-container {
-		max-width: 900px; /* Reduced from 1000px */
+		max-width: 1000px;
 		margin: 0 auto;
 		text-align: center;
 	}
 
+	.about-wrapper {
+		width: 100%;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	.section-header {
+		text-align: center;
+		margin-bottom: 4rem;
+	}
+
+	.section-label {
+		display: inline-block;
+		font-size: 0.85rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 3px;
+		color: var(--accent-primary);
+		margin-bottom: 1rem;
+		padding: 0.5rem 1rem;
+		background: rgba(59, 130, 246, 0.1);
+		border-radius: 50px;
+	}
+
+	:global(.dark) .section-label {
+		background: rgba(177, 59, 255, 0.15);
+	}
+
+	.section-header h2 {
+		font-size: 2.75rem;
+		font-weight: 700;
+		margin-bottom: 1.5rem;
+		background: linear-gradient(135deg, var(--text-main) 0%, var(--accent-primary) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
 	.bio-text {
-		max-width: 750px; /* Reduced from 800px */
-		margin: 0 auto 2.5rem; /* Reduced margin */
-		text-align: justify;
+		max-width: 700px;
+		margin: 0 auto;
+		text-align: center;
 		color: var(--text-muted);
-		line-height: 1.7; /* Reduced line-height */
-		font-size: 1rem; /* Explicitly set smaller size */
+		line-height: 1.8;
+		font-size: 1.1rem;
 	}
 
 	/* Resume Grid */
 	.resume-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 2rem; /* Reduced gap from 3rem */
+		gap: 3rem;
 		text-align: left;
 	}
 
-	.column-title {
-		font-size: 1.25rem; /* Reduced from 1.5rem */
-		margin-bottom: 1.5rem; /* Reduced margin */
+	.resume-column {
+		position: relative;
+	}
+
+	.column-header {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.column-icon {
+		width: 48px;
+		height: 48px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+		border-radius: 14px;
+		color: #fff;
+		box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+	}
+
+	:global(.dark) .column-icon {
+		box-shadow: 0 4px 20px rgba(177, 59, 255, 0.4);
+	}
+
+	.column-header h3 {
+		font-size: 1.35rem;
+		font-weight: 700;
 		color: var(--text-main);
+		margin: 0;
 	}
 
 	/* Timeline */
 	.timeline {
-		border-left: 2px solid var(--accent-secondary);
-		padding-left: 1.5rem;
+		border-left: 2px solid rgba(59, 130, 246, 0.2);
+		padding-left: 2rem;
+	}
+
+	:global(.dark) .timeline {
+		border-left-color: rgba(177, 59, 255, 0.2);
 	}
 
 	.timeline-item {
 		position: relative;
-		margin-bottom: 2rem; /* Reduced from 2.5rem */
+		margin-bottom: 1.75rem;
 	}
 
 	.timeline-item:last-child {
@@ -250,22 +330,25 @@ import { Image } from 'astro:assets';
 
 	.timeline-dot {
 		position: absolute;
-		left: -21px; /* Adjusted slightly */
-		top: 5px;
-		width: 10px; /* Smaller dot */
-		height: 10px;
-		background-color: var(--accent-primary);
+		left: -27px;
+		top: 8px;
+		width: 12px;
+		height: 12px;
+		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
 		border-radius: 50%;
-		border: 2px solid var(--bg-main);
-		box-shadow: 0 0 0 2px var(--accent-secondary);
+		box-shadow: 0 0 0 4px var(--bg-main), 0 0 0 6px var(--accent-primary);
+	}
+
+	:global(.dark) .timeline-dot {
+		box-shadow: 0 0 0 4px var(--bg-main), 0 0 0 6px var(--accent-primary);
 	}
 
 	.timeline-content {
 		background: var(--bg-main);
-		padding: 0.85rem; /* Reduced padding */
-		border-radius: 8px; /* Slightly smaller radius */
+		padding: 1.25rem;
+		border-radius: 16px;
 		border: 1px solid rgba(0,0,0,0.05);
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 	
 	:global(.dark) .timeline-content {
@@ -274,53 +357,97 @@ import { Image } from 'astro:assets';
 	}
 
 	.timeline-content:hover {
-		transform: translateY(-2px); /* Subtle hover */
-		box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+		transform: translateX(8px);
+		box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+		border-color: var(--accent-primary);
+	}
+
+	:global(.dark) .timeline-content:hover {
+		box-shadow: 0 8px 30px rgba(177, 59, 255, 0.15);
+	}
+
+	.timeline-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.5rem;
+		flex-wrap: wrap;
+		gap: 0.5rem;
 	}
 
 	.timeline-content .date {
-		display: inline-block;
-		font-size: 0.75rem; /* Smaller date */
+		font-size: 0.8rem;
 		color: var(--accent-primary);
 		font-weight: 600;
-		margin-bottom: 0.3rem;
-	}
-
-	.timeline-content h4 {
-		margin: 0 0 0.2rem 0;
-		font-size: 1rem; /* Smaller job title */
-		color: var(--text-main);
 	}
 
 	.timeline-content .type {
-		display: inline-block;
-		font-size: 0.7rem; /* Smaller badge text */
-		padding: 0.15rem 0.5rem;
-		border-radius: 15px;
-		background: var(--bg-secondary);
+		font-size: 0.7rem;
+		padding: 0.25rem 0.75rem;
+		border-radius: 20px;
+		background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
 		color: var(--accent-primary);
-		margin-bottom: 0.4rem;
-		font-weight: 500;
+		font-weight: 600;
+	}
+
+	.timeline-content h4 {
+		margin: 0 0 0.5rem 0;
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: var(--text-main);
 	}
 
 	.timeline-content p {
 		margin: 0;
-		font-size: 0.9rem; /* Smaller body text */
+		font-size: 0.9rem;
 		color: var(--text-muted);
 	}
 
 	.timeline-content .location {
-		display: block;
-		margin-top: 0.2rem;
-		font-size: 0.8rem;
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+		margin-top: 0.5rem;
+		font-size: 0.85rem;
+		color: var(--text-muted);
 		opacity: 0.8;
+	}
+
+	.timeline-content .location svg {
+		flex-shrink: 0;
 	}
 
 	@media (max-width: 768px) {
 		.resume-grid {
 			grid-template-columns: 1fr;
-			gap: 4rem;
+			gap: 3rem;
 		}
+
+		.section-header {
+			margin-bottom: 3rem;
+		}
+
+		.section-header h2 {
+			font-size: 2rem;
+		}
+
+		.bio-text {
+			text-align: left;
+			font-size: 1rem;
+		}
+
+		.timeline {
+			padding-left: 1.5rem;
+		}
+
+		.timeline-dot {
+			left: -21px;
+		}
+
+		.timeline-content:hover {
+			transform: translateY(-4px);
+		}
+	}
 		
 		.bio-text {
 			text-align: left;
@@ -332,7 +459,7 @@ import { Image } from 'astro:assets';
 		position: relative;
 		background: var(--bg-main);
 		text-align: center;
-		padding-top: 5rem;
+		padding-top: 4.5rem;
 		padding-bottom: 2rem;
 		min-height: 100vh;
 		display: flex;
