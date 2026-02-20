@@ -151,15 +151,25 @@ import { Image } from 'astro:assets';
 					<p data-i18n="section.skills.desc">Crafting solutions with the best tools in the industry.</p>
 				</div>
 				
-				<div class="tech-grid">
-					{techStack.map((tech) => (
-						<div class="tech-item">
-							<div class="tech-icon-wrapper">
-								<Image src={tech.icon} alt={tech.name} width={50} height={50} class="tech-icon" />
+				<div class="tech-carousel-wrapper">
+					<div class="tech-carousel">
+						{techStack.map((tech) => (
+							<div class="tech-item">
+								<div class="tech-icon-wrapper">
+									<Image src={tech.icon} alt={tech.name} width={50} height={50} class="tech-icon" />
+								</div>
+								<span class="tech-name">{tech.name}</span>
 							</div>
-							<span class="tech-name">{tech.name}</span>
-						</div>
-					))}
+						))}
+						{techStack.map((tech) => (
+							<div class="tech-item">
+								<div class="tech-icon-wrapper">
+									<Image src={tech.icon} alt={tech.name} width={50} height={50} class="tech-icon" />
+								</div>
+								<span class="tech-name">{tech.name}</span>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</section>
@@ -212,12 +222,13 @@ import { Image } from 'astro:assets';
 	}
 	section {
 		padding: 6rem 2rem;
-		min-height: 80vh;
+		min-height: auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		background-color: var(--bg-main);
+		overflow: hidden;
 	}
 
 	.section-container {
@@ -454,10 +465,33 @@ import { Image } from 'astro:assets';
 		.timeline-content:hover {
 			transform: translateY(-4px);
 		}
-	}
-		
-		.bio-text {
-			text-align: left;
+
+		/* Skills Carousel Mobile */
+		.tech-carousel-wrapper {
+			margin-top: 2rem;
+		}
+
+		.tech-carousel {
+			gap: 1rem;
+			animation: scroll 20s linear infinite;
+		}
+
+		.tech-item {
+			padding: 1rem 1.25rem;
+		}
+
+		.tech-icon-wrapper {
+			width: 40px;
+			height: 40px;
+		}
+
+		.tech-icon {
+			width: 22px;
+			height: 22px;
+		}
+
+		.tech-name {
+			font-size: 0.75rem;
 		}
 	}
 
@@ -661,13 +695,32 @@ import { Image } from 'astro:assets';
 		margin: 0 auto;
 	}
 
-	/* Tech Stack Grid */
-	.tech-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-		gap: 1.5rem;
+	/* Tech Stack Carousel */
+	.tech-carousel-wrapper {
+		width: 100%;
+		overflow: hidden;
 		margin-top: 3rem;
-		padding: 0 1rem;
+		padding: 1rem 0;
+	}
+
+	.tech-carousel {
+		display: flex;
+		gap: 1.5rem;
+		animation: scroll 30s linear infinite;
+		width: max-content;
+	}
+
+	.tech-carousel:hover {
+		animation-play-state: paused;
+	}
+
+	@keyframes scroll {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(calc(-50% - 0.75rem));
+		}
 	}
 
 	.tech-item {
@@ -675,17 +728,18 @@ import { Image } from 'astro:assets';
 		flex-direction: column;
 		align-items: center;
 		gap: 0.75rem;
-		padding: 1.5rem 1rem;
+		padding: 1.25rem 1.5rem;
 		background: var(--bg-main);
 		border-radius: 20px;
-		border: 1px solid rgba(0,0,0,0.05);
+		border: 1px solid rgba(59, 130, 246, 0.15);
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		cursor: default;
+		flex-shrink: 0;
 	}
 
 	:global(.dark) .tech-item {
 		background: rgba(255,255,255,0.03);
-		border: 1px solid rgba(255,255,255,0.05);
+		border: 1px solid rgba(177, 59, 255, 0.2);
 	}
 
 	.tech-item:hover {
@@ -699,13 +753,13 @@ import { Image } from 'astro:assets';
 	}
 
 	.tech-icon-wrapper {
-		width: 70px;
-		height: 70px;
+		width: 50px;
+		height: 50px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-		border-radius: 18px;
+		border-radius: 14px;
 		transition: all 0.3s ease;
 	}
 
@@ -719,8 +773,8 @@ import { Image } from 'astro:assets';
 	}
 
 	.tech-icon {
-		width: 36px;
-		height: 36px;
+		width: 28px;
+		height: 28px;
 		object-fit: contain;
 		filter: grayscale(20%);
 		transition: filter 0.3s ease;
@@ -731,10 +785,11 @@ import { Image } from 'astro:assets';
 	}
 
 	.tech-name {
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		font-weight: 600;
 		color: var(--text-main);
 		transition: color 0.3s ease;
+		white-space: nowrap;
 	}
 
 	.tech-item:hover .tech-name {
