@@ -8,10 +8,15 @@ import { Image } from 'astro:assets';
 <Layout title="Ryan Mahardika - Portfolio">
 	<main>
 		<section id="home" class="hero">
+			<div class="hero-bg">
+				<div class="gradient-blob blob-1"></div>
+				<div class="gradient-blob blob-2"></div>
+				<div class="grid-pattern"></div>
+			</div>
 			<div class="hero-content">
 				<span class="greeting" data-i18n="hero.greeting">Hello, I'm</span>
-				<h1 class="name">Ryan Mahardika</h1>
-				<p class="role" data-i18n="hero.role">IT Support | Network Administrator | Junior Fullstack Developer</p>
+				<h1 class="name"><span id="typing-name"></span><span class="cursor">|</span></h1>
+				<p class="role" data-i18n="hero.role">IT Support | Network Administrator | Junior Fullstack Developer | AI Enthusiast</p>
 				<div class="cta-buttons">
 					<a href="#contact" class="btn btn-primary" data-i18n="hero.cta.contact">Contact Me</a>
 					<a href="#about" class="btn btn-outline" data-i18n="hero.cta.about">About Me</a>
@@ -324,9 +329,193 @@ import { Image } from 'astro:assets';
 
 	/* Hero Section */
 	.hero {
-		background: radial-gradient(circle at top right, var(--bg-secondary) 0%, var(--bg-main) 100%);
+		position: relative;
+		background: var(--bg-main);
 		text-align: center;
-		padding-top: 8rem; /* Account for fixed navbar */
+		padding-top: 5rem;
+		padding-bottom: 2rem;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.gradient-blob {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(120px);
+		opacity: 0.5;
+		animation: float 25s ease-in-out infinite;
+	}
+
+	.blob-1 {
+		width: 700px;
+		height: 700px;
+		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+		top: -25%;
+		right: -20%;
+	}
+
+	.blob-2 {
+		width: 600px;
+		height: 600px;
+		background: linear-gradient(135deg, var(--accent-secondary), #06b6d4);
+		bottom: -25%;
+		left: -20%;
+		animation-delay: -12s;
+	}
+
+	:global(.dark) .gradient-blob {
+		opacity: 0.2;
+	}
+
+	.grid-pattern {
+		position: absolute;
+		inset: 0;
+		background-image: 
+			linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
+		background-size: 50px 50px;
+	}
+
+	:global(.dark) .grid-pattern {
+		background-image: 
+			linear-gradient(rgba(177, 59, 255, 0.06) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(177, 59, 255, 0.06) 1px, transparent 1px);
+	}
+
+	@keyframes float {
+		0%, 100% { transform: translate(0, 0) scale(1); }
+		33% { transform: translate(40px, -40px) scale(1.05); }
+		66% { transform: translate(-30px, 30px) scale(0.95); }
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		padding: 0 1rem;
+		animation: fadeInUp 0.8s ease-out;
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(40px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.greeting {
+		font-size: 1.25rem;
+		font-weight: 500;
+		color: var(--accent-primary);
+		display: block;
+		margin-bottom: 1rem;
+		letter-spacing: 4px;
+		text-transform: uppercase;
+	}
+
+	.name {
+		font-size: clamp(3rem, 8vw, 5.5rem);
+		margin: 0;
+		line-height: 1.1;
+		font-weight: 800;
+		letter-spacing: -2px;
+		background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 50%, #06b6d4 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.cursor {
+		display: inline-block;
+		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: blink 0.8s infinite;
+		margin-left: 2px;
+		font-weight: 400;
+	}
+
+	@keyframes blink {
+		0%, 50% { opacity: 1; }
+		51%, 100% { opacity: 0; }
+	}
+
+	.role {
+		font-size: 1.25rem;
+		color: var(--text-muted);
+		margin-top: 1.5rem;
+		margin-bottom: 3rem;
+		line-height: 1.6;
+		max-width: 650px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.btn {
+		padding: 1rem 2.5rem;
+		border-radius: 50px;
+		font-weight: 600;
+		font-size: 1rem;
+		text-decoration: none;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.btn:hover {
+		transform: translateY(-3px);
+	}
+
+	.btn-primary {
+		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+		color: #fff;
+		box-shadow: 0 4px 25px rgba(139, 92, 246, 0.4);
+	}
+
+	:global(.dark) .btn-primary {
+		color: #fff;
+		box-shadow: 0 4px 25px rgba(177, 59, 255, 0.5);
+	}
+
+	.btn-primary:hover {
+		box-shadow: 0 8px 35px rgba(139, 92, 246, 0.5);
+	}
+
+	.btn-outline {
+		background: transparent;
+		border: 2px solid rgba(139, 92, 246, 0.3);
+		color: var(--text-color);
+	}
+
+	:global(.dark) .btn-outline {
+		border-color: rgba(177, 59, 255, 0.3);
+	}
+
+	.btn-outline:hover {
+		background: rgba(139, 92, 246, 0.08);
+		border-color: var(--accent-primary);
+	}
+
+	:global(.dark) .btn-outline:hover {
+		background: rgba(177, 59, 255, 0.1);
 	}
 
 	/* Tech Stack Grid */
@@ -399,74 +588,6 @@ import { Image } from 'astro:assets';
 		color: var(--accent-primary);
 	}
 
-	.greeting {
-		font-size: 1.2rem;
-		font-weight: 500;
-		color: var(--accent-primary);
-		display: block;
-		margin-bottom: 0.5rem;
-		letter-spacing: 1px;
-	}
-
-	.name {
-		font-size: 4rem;
-		margin: 0;
-		background: linear-gradient(to right, var(--accent-secondary), var(--accent-primary));
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		line-height: 1.2;
-		font-weight: 800;
-	}
-
-	.role {
-		font-size: 1.5rem;
-		color: var(--text-muted);
-		margin-top: 1rem;
-		margin-bottom: 2.5rem;
-	}
-
-	.cta-buttons {
-		display: flex;
-		gap: 1rem;
-		justify-content: center;
-	}
-
-	.btn {
-		padding: 0.8rem 2rem;
-		border-radius: 50px;
-		font-weight: 600;
-		text-decoration: none;
-		transition: transform 0.2s, box-shadow 0.2s;
-	}
-
-	.btn:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-	}
-
-	.btn-primary {
-		background-color: var(--accent-primary);
-		color: #fff; /* Always white for contrast on primary color */
-	}
-	
-	:global(.dark) .btn-primary {
-		color: #090040; /* Dark text on bright accent for dark mode */
-	}
-
-	.btn-outline {
-		border: 2px solid var(--accent-primary);
-		color: var(--accent-primary);
-	}
-
-	.btn-outline:hover {
-		background-color: var(--accent-primary);
-		color: #fff;
-	}
-	
-	:global(.dark) .btn-outline:hover {
-		color: #090040;
-	}
-
 	h2 {
 		font-size: 2.5rem;
 		margin-bottom: 1.5rem;
@@ -480,11 +601,39 @@ import { Image } from 'astro:assets';
 	}
 
 	@media (max-width: 768px) {
-		.name {
-			font-size: 2.5rem;
+		.hero {
+			min-height: 100vh;
+			padding: 4rem 1rem 2rem;
 		}
+
+		.gradient-blob {
+			opacity: 0.3;
+		}
+
+		.hero-content {
+			padding: 0 0.5rem;
+		}
+
+		.greeting {
+			font-size: 1rem;
+			letter-spacing: 2px;
+			margin-bottom: 0.75rem;
+		}
+
+		.name {
+			letter-spacing: -1px;
+		}
+
 		.role {
-			font-size: 1.2rem;
+			font-size: 1rem;
+			margin-top: 1rem;
+			margin-bottom: 2rem;
+			padding: 0 0.5rem;
+		}
+
+		.btn {
+			padding: 0.875rem 1.75rem;
+			font-size: 0.95rem;
 		}
 	}
 
@@ -609,3 +758,22 @@ import { Image } from 'astro:assets';
 	}
 
 	/* Removed social-links-footer styles */
+</style>
+
+<script>
+	const name = "Ryan Mahardika";
+	const typingElement = document.getElementById('typing-name');
+	let index = 0;
+
+	function typeWriter() {
+		if (index < name.length) {
+			if (typingElement) {
+				typingElement.textContent += name.charAt(index);
+				index++;
+				setTimeout(typeWriter, 100);
+			}
+		}
+	}
+
+	setTimeout(typeWriter, 500);
+</script>
