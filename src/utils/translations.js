@@ -48,9 +48,11 @@ export const translations = {
     "edu.2.date": "2022 - Present",
     
     "section.skills.title": "Skill and Tools",
+    "section.skills.label": "My Expertise",
     "section.skills.desc": "Crafting solutions with the best tools in the industry.",
     
     "section.contact.title": "Contact",
+    "section.contact.label": "Get In Touch",
     "section.contact.desc": "Let's work together to create something amazing.",
     "contact.connect": "Let's Connect",
     "contact.email": "Email Me",
@@ -107,9 +109,11 @@ export const translations = {
     "edu.2.date": "2022 - Sekarang",
     
     "section.skills.title": "Keahlian & Alat",
+    "section.skills.label": "Keahlian Saya",
     "section.skills.desc": "Menciptakan solusi dengan alat terbaik di industri.",
     
     "section.contact.title": "Kontak",
+    "section.contact.label": "Hubungi Saya",
     "section.contact.desc": "Mari bekerja sama untuk menciptakan sesuatu yang luar biasa.",
     "contact.connect": "Mari Terhubung",
     "contact.email": "Email Saya",
